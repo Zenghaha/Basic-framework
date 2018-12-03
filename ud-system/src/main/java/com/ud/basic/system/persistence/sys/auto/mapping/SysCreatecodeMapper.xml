@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ud.basic.system.persistence.sys.auto.mapper.SysCreatecodeMapper" >
+  <resultMap id="BaseResultMap" type="com.ud.basic.system.persistence.sys.auto.model.SysCreatecode" >
+    <id column="createcode_id" property="createcodeId" jdbcType="VARCHAR" />
+    <result column="packagename" property="packagename" jdbcType="VARCHAR" />
+    <result column="objectname" property="objectname" jdbcType="VARCHAR" />
+    <result column="tablename" property="tablename" jdbcType="VARCHAR" />
+    <result column="fieldlist" property="fieldlist" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="fhtype" property="fhtype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    createcode_id, packagename, objectname, tablename, fieldlist, createtime, title, 
+    fhtype
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ud.basic.system.persistence.sys.auto.model.SysCreatecodeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sys_createcode
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_createcode
+    where createcode_id = #{createcodeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_createcode
+    where createcode_id = #{createcodeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ud.basic.system.persistence.sys.auto.model.SysCreatecodeExample" >
+    delete from sys_createcode
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ud.basic.system.persistence.sys.auto.model.SysCreatecode" >
+    insert into sys_createcode (createcode_id, packagename, objectname, 
+      tablename, fieldlist, createtime, 
+      title, fhtype)
+    values (#{createcodeId,jdbcType=VARCHAR}, #{packagename,jdbcType=VARCHAR}, #{objectname,jdbcType=VARCHAR}, 
+      #{tablename,jdbcType=VARCHAR}, #{fieldlist,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{fhtype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ud.basic.system.persistence.sys.auto.model.SysCreatecode" >
+    insert into sys_createcode
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="createcodeId != null" >
+        createcode_id,
+      </if>
+      <if test="packagename != null" >
+        packagename,
+      </if>
+      <if test="objectname != null" >
+        objectname,
+      </if>
+      <if test="tablename != null" >
+        tablename,
+      </if>
+      <if test="fieldlist != null" >
+        fieldlist,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="fhtype != null" >
+        fhtype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="createcodeId != null" >
+        #{createcodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="packagename != null" >
+        #{packagename,jdbcType=VARCHAR},
+      </if>
+      <if test="objectname != null" >
+        #{objectname,jdbcType=VARCHAR},
+      </if>
+      <if test="tablename != null" >
+        #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldlist != null" >
+        #{fieldlist,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="fhtype != null" >
+        #{fhtype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ud.basic.system.persistence.sys.auto.model.SysCreatecodeExample" resultType="java.lang.Integer" >
+    select count(*) from sys_createcode
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_createcode
+    <set >
+      <if test="record.createcodeId != null" >
+        createcode_id = #{record.createcodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.packagename != null" >
+        packagename = #{record.packagename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectname != null" >
+        objectname = #{record.objectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tablename != null" >
+        tablename = #{record.tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldlist != null" >
+        fieldlist = #{record.fieldlist,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fhtype != null" >
+        fhtype = #{record.fhtype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_createcode
+    set createcode_id = #{record.createcodeId,jdbcType=VARCHAR},
+      packagename = #{record.packagename,jdbcType=VARCHAR},
+      objectname = #{record.objectname,jdbcType=VARCHAR},
+      tablename = #{record.tablename,jdbcType=VARCHAR},
+      fieldlist = #{record.fieldlist,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      fhtype = #{record.fhtype,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ud.basic.system.persistence.sys.auto.model.SysCreatecode" >
+    update sys_createcode
+    <set >
+      <if test="packagename != null" >
+        packagename = #{packagename,jdbcType=VARCHAR},
+      </if>
+      <if test="objectname != null" >
+        objectname = #{objectname,jdbcType=VARCHAR},
+      </if>
+      <if test="tablename != null" >
+        tablename = #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldlist != null" >
+        fieldlist = #{fieldlist,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="fhtype != null" >
+        fhtype = #{fhtype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where createcode_id = #{createcodeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ud.basic.system.persistence.sys.auto.model.SysCreatecode" >
+    update sys_createcode
+    set packagename = #{packagename,jdbcType=VARCHAR},
+      objectname = #{objectname,jdbcType=VARCHAR},
+      tablename = #{tablename,jdbcType=VARCHAR},
+      fieldlist = #{fieldlist,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      fhtype = #{fhtype,jdbcType=VARCHAR}
+    where createcode_id = #{createcodeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

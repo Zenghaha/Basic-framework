@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+<classPathEntry location="C:\Users\union007\.m2\repository\mysql\mysql-connector-java\5.1.43\mysql-connector-java-5.1.43.jar" />
+  <context id="context1" defaultModelType="flat">
+	<commentGenerator>  
+	  <!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
+	  <property name="suppressAllComments" value="true" />  
+	</commentGenerator> 
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.191:3306/ud_basic_system" userId="lizp@union01.com" password="oAesSEuV" />
+    <javaModelGenerator targetPackage="com.ud.basic.system.persistence.sys.auto.model" targetProject="src/main/java" />
+    <sqlMapGenerator targetPackage="com.ud.basic.system.persistence.sys.auto.mapping" targetProject="src/main/java" />
+    <javaClientGenerator targetPackage="com.ud.basic.system.persistence.sys.auto.mapper" targetProject="src/main/java" type="XMLMAPPER" />
+    
+
+    <!-- 数据库表已经产生对应的映射文件 -->
+     <!-- <table tableName="sys_app_user" domainObjectName="SysAppUser"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table>
+     <table tableName="sys_createcode" domainObjectName="SysCreatecode"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table>
+     <table tableName="sys_dictionaries" domainObjectName="SysDictionaries"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table>
+     <table tableName="sys_fhbutton" domainObjectName="SysFhbutton"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table>
+     <table tableName="sys_fhlog" domainObjectName="SysFhlog"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table>
+     <table tableName="sys_fhsms" domainObjectName="SysFhsms"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table>
+     <table tableName="sys_loginimg" domainObjectName="SysLoginimg"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table> -->
+     <!-- <table tableName="sys_menu" domainObjectName="SysMenu"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table>
+     <table tableName="sys_role" domainObjectName="SysRole"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table>
+     <table tableName="sys_role_fhbutton" domainObjectName="SysRoleFhbutton"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table>
+     <table tableName="sys_user" domainObjectName="SysUser"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table> -->
+     <!-- <table tableName="sys_userphoto" domainObjectName="SysUserphoto"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+     </table> -->
+     <table tableName="sys_dictionaries" domainObjectName="SysDictionaries"
+             enableCountByExample="true" enableUpdateByExample="true"
+             enableDeleteByExample="true" enableSelectByExample="true"
+             selectByExampleQueryId="true" >
+             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+     </table>
+  </context>
+</generatorConfiguration>

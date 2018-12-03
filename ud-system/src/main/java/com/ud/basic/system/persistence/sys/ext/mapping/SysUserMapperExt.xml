@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ud.basic.system.persistence.sys.ext.mapper.SysUserMapperExt" >
+
+
+ <select id="listUsers" parameterType="Map" resultType="com.ud.basic.system.controller.model.user.ListUserVO">
+  	select  u.USER_ID as userId,
+				u.USERNAME as username,
+				u.PASSWORD as password,
+				u.LAST_LOGIN as lastLogin,
+				u.NAME as name,
+				u.IP as ip,
+				u.EMAIL as email,
+				u.NUMBER as number,
+				u.PHONE as phone,
+				r.ROLE_ID as roleId,
+				r.ROLE_NAME as roleName
+		from SYS_USER u,SYS_ROLE r 
+		where u.ROLE_ID = r.ROLE_ID 
+		and u.type != 2
+		<!-- and r.PARENT_ID = '1' -->
+		<if test="keywords!= null and keywords != ''"><!-- 关键词检索 -->
+			and
+				(
+					 u.USERNAME LIKE CONCAT(CONCAT('%', #{keywords}),'%')
+					 or 
+					 u.EMAIL LIKE CONCAT(CONCAT('%', #{keywords}),'%') 
+					 or
+					 u.NUMBER LIKE CONCAT(CONCAT('%', #{keywords}),'%')
+					 or
+					 u.NAME LIKE CONCAT(CONCAT('%', #{keywords}),'%')
+					 or
+					 u.PHONE LIKE CONCAT(CONCAT('%', #{keywords}),'%')
+				)
+		</if>
+		<if test="roleId != null and roleId != ''"><!-- 角色检索 -->
+			and u.ROLE_ID=#{roleId} 
+		</if>
+		<if test="lastLoginStart!=null and lastLoginStart!=''"><!-- 登录时间检索 -->
+			and u.LAST_LOGIN &gt;= #{lastLoginStart} 
+		</if>
+		<if test="owner != null and owner != ''"><!-- 角色检索 -->
+			and u.org_id=#{owner} 
+		</if>
+		<if test="lastLoginEnd!=null and lastLoginEnd!=''"><!-- 登录时间检索 -->
+			and u.LAST_LOGIN &lt;= #{lastLoginEnd} 
+		</if>
+		order by u.LAST_LOGIN desc
+  </select>
+  
+  <select id="listAllUserByRoldId" parameterType="String" resultType="Integer">
+  	select count(1) from sys_user where ROLE_ID = #{roleId}
+  </select>
+</mapper>

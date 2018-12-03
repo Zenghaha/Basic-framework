@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ud.basic.system.persistence.sys.ext.mapper.SysRoleMapperExt" >
+
+<resultMap id="BaseResultMap" type="com.ud.basic.system.controller.model.role.SysRoleVO">
+    <id column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="org_id" jdbcType="BIGINT" property="orgId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="rights" jdbcType="VARCHAR" property="rights" />
+    <result column="is_default" jdbcType="BIT" property="isDefault" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="last_modified_date" jdbcType="TIMESTAMP" property="lastModifiedDate" />
+    <result column="last_modified_by" jdbcType="VARCHAR" property="lastModifiedBy" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    role_id, org_id, role_name, parent_id, rights, is_default, created_date, created_by, 
+    last_modified_date, last_modified_by, del_flag, company_name, department, position
+  </sql>
+
+	  <select id="listAllRolesByPId" resultMap="BaseResultMap">
+	  	select
+			<include refid="Base_Column_List"></include>
+			from
+			sys_role
+			where
+			PARENT_ID = #{roleId}
+			ORDER BY created_date asc
+	  </select>
+	  
+	  <update id="setAllRights" parameterType="Map">
+			update 
+			sys_role
+			set RIGHTS=#{rights} 
+			where PARENT_ID=#{roleId}
+	  </update>
+	  
+	  <select id="listAllRoleArrByOrgId" parameterType="String" resultMap="BaseResultMap">
+	  	select
+			<include refid="Base_Column_List"></include>
+			from
+			sys_role
+			where org_id = #{orgId} and parent_id = 0
+			order by is_default desc
+	  </select>
+	  
+	  <select id="listAllRolesByOrgId"  parameterType="Map" resultMap="BaseResultMap">
+	  	select
+			<include refid="Base_Column_List"></include>
+			from
+			sys_role
+			where org_id = #{orgId}
+			and parent_id = #{roleId}
+	  </select>
+	  
+	  <update id="UpdateDefaultRoleByOrgId" parameterType="com.ud.basic.system.persistence.sys.auto.model.SysOrg">
+	  	update sys_role
+	  	set rights = #{rights}
+	  	where org_id = #{id} and is_default = 1
+	  </update>
+</mapper>
